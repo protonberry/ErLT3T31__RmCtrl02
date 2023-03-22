@@ -1,0 +1,377 @@
+
+void ButtonClick1()
+{
+  tft.setFreeFont(LargeFont);
+  tft.setTextDatum(TC_DATUM);
+  tft.drawString(5, 10, "Button Click");
+/*
+  tft.setFreeFont(MedFont);
+  tft.drawString(7, 32, "R");
+  tft.fillCircle(10, 30, 7, U8G2_DRAW_ALL);
+  tft.setFreeFont(SmallFont);
+  tft.drawString(53, 32, "Tare");
+*/
+  tft.setFreeFont(MedFont);
+  tft.drawString(7, 32, "R R");
+  tft.fillCircle(10, 30, 7, U8G2_DRAW_ALL);
+  tft.fillCircle(26, 30, 7, U8G2_DRAW_ALL);
+  tft.setFreeFont(SmallFont);
+  tft.drawString(53, 32, "Next Field");
+
+  tft.setFreeFont(MedFont);
+  tft.drawString(7, 48, "R   R");
+  tft.drawString(19, 48, "__");
+  tft.fillCircle(10, 46, 7, U8G2_DRAW_ALL);
+  tft.fillCircle(42, 46, 7, U8G2_DRAW_ALL);
+  tft.setFreeFont(SmallFont);
+  //           tft.drawString(53,48,"Lock/");
+
+  u8g2.drawBox(53, 40, 24, 14);
+  u8g2.setDrawColor(2);
+  tft.drawString(53, 48, "Lock");
+  u8g2.setDrawColor(1);
+
+  //           u8g2.drawBox(83,40,24,14);
+  //           u8g2.setDrawColor(2);
+  tft.drawString(80, 48, "/ Unlock");
+  //           u8g2.setDrawColor(1);
+/*
+  tft.setFreeFont(MedFont);
+  tft.drawString(7, 64, "Y");
+  tft.fillCircle(10, 62, 7, U8G2_DRAW_ALL);
+  tft.setFreeFont(SmallFont);
+  tft.drawString(53, 64, "Switch Test");
+
+  tft.setFreeFont(MedFont);
+  tft.drawString(7, 80, "Y   Y");
+  tft.drawString(19, 80, "__");
+  tft.fillCircle(10, 78, 7, U8G2_DRAW_ALL);
+  tft.fillCircle(42, 78, 7, U8G2_DRAW_ALL);
+  tft.setFreeFont(SmallFont);
+  tft.drawString(53, 80, "Change Param");
+*/
+  tft.setFreeFont(MedFont);
+  tft.drawString(7, 80, "G");
+  tft.fillCircle(10, 78, 7, U8G2_DRAW_ALL);
+  tft.setFreeFont(SmallFont);
+  tft.drawString(53, 80, "Up/inc");
+
+  tft.setFreeFont(MedFont);
+  tft.drawString(7, 96, "G G");
+  tft.fillCircle(10, 94, 7, U8G2_DRAW_ALL);
+  tft.fillCircle(26, 94, 7, U8G2_DRAW_ALL);
+  tft.setFreeFont(SmallFont);
+  tft.drawString(53, 96, "Down/dec");
+
+  tft.setFreeFont(MedFont);
+//  tft.drawString(7, 112, "G   G");
+  tft.drawString(7, 112, "G");
+//  tft.setFreeFont(SmallFont);
+//  tft.drawString(19, 112, "__");
+  tft.fillCircle(10, 110, 7, U8G2_DRAW_ALL);
+//  tft.fillCircle(42, 110, 7, U8G2_DRAW_ALL);
+  tft.setFreeFont(SmallFont);
+  tft.drawString(7, 112, "  -hold Fast inc");
+//  tft.drawString(53, 112, "Fast inc");
+
+  u8g2.sendBuffer();
+}
+
+void SampleData2()
+{
+  tft.setFreeFont(LargeFont);
+  u8g2.setFontPosBaseline();
+  //           u8g2.clearBuffer();
+  //           Locked = true;
+  if (Locked)
+  {
+    u8g2.drawBox(0, 0, 128, 16);
+    u8g2.setDrawColor(2);
+    tft.drawString(64 - (u8g2.getStrWidth("SAMPLE DATA") / 2), 15, "SAMPLE DATA");
+    u8g2.setDrawColor(1);
+  }
+  else
+  {
+    tft.drawString(64 - (u8g2.getStrWidth("SAMPLE DATA") / 2), 15, "SAMPLE DATA");
+  }
+
+  u8g2.setFontPosTop();
+
+  tft.setFreeFont(SmallFont);
+  tft.drawString(7, 22, "Lock-chg / unL-save");
+
+  tft.setFreeFont(MedFont);
+  tft.drawString(7, 39, "R R");
+  tft.fillCircle(10, 44, 7, U8G2_DRAW_ALL);
+  tft.fillCircle(26, 44, 7, U8G2_DRAW_ALL);
+  tft.setFreeFont(SmallFont);
+  tft.drawString(40, 39, "Next Field");
+/*
+  tft.drawString(7, 40, "G  = inc");
+  tft.drawString(64, 40, "R  = dec");
+  tft.fillCircle(9, 45, 7, U8G2_DRAW_ALL);
+  tft.fillCircle(66, 45, 7, U8G2_DRAW_ALL);
+*/
+  tft.drawString(1, Vy[1], " Sample ID:");
+  u8g2.setCursor(Vx[1], Vy[1]);
+  u8g2.print(SampleID);
+  tft.drawString(1, Vy[2], "   Proj ID:");
+  u8g2.setCursor(Vx[2], Vy[2]);
+  u8g2.print(ProjectID);
+  tft.drawString(1, Vy[3], "Lst Seq Ct:");
+  u8g2.setCursor(Vx[3], Vy[3]);
+  u8g2.print(Test_ID);
+  debug("Blade= ");
+  debugln(Blade);
+  tft.drawString(1, Vy[4], "     Blade:");
+  u8g2.setCursor(Vx[4], Vy[4]);
+  u8g2.print(Blade);
+  u8g2.setCursor(Vx[4] + (u8g2.getMaxCharWidth() + 1) * (Vnd[4] + 2), Vy[4]);
+  debug("BladeDes= ");
+  debugln(VaneBladeDes[Blade]);
+
+  u8g2.print(VaneBladeDes[Blade]);
+  //        grid();
+  u8g2.sendBuffer();
+}
+
+void TestMV3()
+  {
+  char filechar[31];
+  String fileString;
+
+  tft.setFreeFont(LargeFont);
+  u8g2.setFontPosBaseline();
+  //           u8g2.clearBuffer();
+  //           Locked = true;
+  if (Locked)
+  {
+    u8g2.drawBox(0, 0, 128, 16);
+    u8g2.setDrawColor(2);
+    tft.drawString(63 - (u8g2.getStrWidth("TEST MV") / 2), 15, "TEST MV");
+    u8g2.setDrawColor(1);
+  }
+  else
+  {
+    tft.drawString(63 - (u8g2.getStrWidth("TEST MV") / 2), 15, "TEST MV");
+  }
+
+  tft.setFreeFont(SmallFont);
+  tft.drawString(7, 30, "G__G Start/Stop");
+  //          tft.drawString(7,30,"G__G Start R__R Stop");
+
+  tft.fillCircle(9, 25, 6, U8G2_DRAW_ALL);
+  tft.fillCircle(27, 25, 6, U8G2_DRAW_ALL);
+  //           tft.fillCircle(75,25,6,U8G2_DRAW_ALL);
+  //           tft.fillCircle(93,25,6,U8G2_DRAW_ALL);
+
+  tft.drawString(0, 47, "Bld:");
+  u8g2.setCursor(23, 47);
+  u8g2.print(VaneBladeDes[Blade]);
+
+  fileString = "fn:" + String(ProjectID) + String(SampleID) + String(Test_ID + 1);
+  fileString.toCharArray(filechar, 14);
+  tft.setFreeFont(SmallFont);
+
+  blankTiles(7, 4, 9, 2);
+  tft.drawString(57, 47, filechar);
+
+  u8g2.updateDisplayArea(7, 4, 9, 2);
+  
+
+  tft.drawString(1, 64, "Su=       Rot=      d");
+
+  u8g2.drawHLine(0, 68, 128);
+  tft.setFreeFont(u8g2_font_9x15B_tr);
+  tft.drawString(12, 84, "MAX Su - psf");
+
+  u8g2.drawHLine(0, 70, 128);
+
+  //           grid();
+  u8g2.sendBuffer();
+  //          ReadyforTestflag = true ;
+}
+void TestMVur4()
+{
+  char filechar[31];
+  String fileString;
+  tft.setFreeFont(LargeFont);
+  u8g2.setFontPosBaseline();
+  //           u8g2.clearBuffer();
+  //           Locked = true;
+  if (Locked)
+  {
+    u8g2.drawBox(0, 0, 128, 16);
+    u8g2.setDrawColor(2);
+    tft.drawString(63 - (u8g2.getStrWidth("TEST MV U+R") / 2), 15, "TEST MV U+R");
+    u8g2.setDrawColor(1);
+  }
+  else
+  {
+    tft.drawString(63 - (u8g2.getStrWidth("TEST MV U+R") / 2), 15, "TEST MV U+R");
+  }
+
+  tft.setFreeFont(SmallFont);
+  tft.drawString(7, 30, "G__G Start/Stop");
+  //          tft.drawString(7,30,"G__G Start R__R Stop");
+
+  tft.fillCircle(9, 25, 6, U8G2_DRAW_ALL);
+  tft.fillCircle(27, 25, 6, U8G2_DRAW_ALL);
+  //           tft.fillCircle(75,25,6,U8G2_DRAW_ALL);
+  //           tft.fillCircle(93,25,6,U8G2_DRAW_ALL);
+
+  tft.drawString(0, 47, "Bld:");
+  u8g2.setCursor(23, 47);
+  u8g2.print(VaneBladeDes[Blade]);
+
+  fileString = "fn:" + String(ProjectID) + String(SampleID) + String(Test_ID + 1);
+  fileString.toCharArray(filechar, 14);
+  tft.setFreeFont(SmallFont);
+
+  blankTiles(7, 4, 9, 2);
+  tft.drawString(57, 47, filechar);
+
+  u8g2.updateDisplayArea(7, 4, 9, 2);
+
+  tft.drawString(1, 64, "S =       Rot=      d");
+
+  u8g2.drawHLine(0, 68, 128);
+  tft.setFreeFont(u8g2_font_9x15B_tr);
+  tft.drawString(64 - (u8g2.getStrWidth("MAX Vals-psf") / 2), 84, "MAX Vals-psf");
+  //           tft.drawString(12,84,"MAX Values - psf");
+
+  u8g2.drawHLine(0, 70, 128);
+  tft.setFreeFont(LargeFont);
+  tft.drawString(12, 103, "Su =");
+  tft.drawString(12, 125, "Sr =");
+  //            grid();
+  u8g2.sendBuffer();
+}
+void Torque5()
+{
+  tft.setFreeFont(LargeFont);
+  u8g2.setFontPosBaseline();
+  //           u8g2.clearBuffer();
+  //           Locked = true;
+  if (Locked)
+  {
+    u8g2.drawBox(0, 0, 128, 16);
+    u8g2.setDrawColor(2);
+    tft.drawString(64 - (u8g2.getStrWidth("TORQUE") / 2), 15, "TORQUE");
+    u8g2.setDrawColor(1);
+  }
+  else
+  {
+    tft.drawString(64 - (u8g2.getStrWidth("TORQUE") / 2), 15, "TORQUE");
+  }
+  tft.setFreeFont(MedFont);
+//  tft.drawString(7, 46, "R     Tare");
+//  tft.fillCircle(10, 41, 7, U8G2_DRAW_ALL);
+//  tft.setFreeFont(SmallFont);
+//  tft.drawString(53, 46, "Tare");
+
+//  tft.setFreeFont(SmallFont);
+  tft.drawString(7, 30, "G__G Start/Tare");
+  tft.fillCircle(10, 25, 7, U8G2_DRAW_ALL);
+  tft.fillCircle(35, 25, 7, U8G2_DRAW_ALL);
+
+  /*           tft.drawString(7,30,"G__G Start R__R Stop");
+
+             tft.fillCircle(9,25,6,U8G2_DRAW_ALL);
+             tft.fillCircle(27,25,6,U8G2_DRAW_ALL);
+             tft.fillCircle(75,25,6,U8G2_DRAW_ALL);
+             tft.fillCircle(93,25,6,U8G2_DRAW_ALL);
+
+             tft.drawString(7,30,"R  Tare");
+
+             tft.fillCircle(9,25,6,U8G2_DRAW_ALL);
+  */
+  tft.setFreeFont(u8g2_font_9x15B_tr);
+  tft.drawString(64 - (u8g2.getStrWidth("Torque, in-lbs") / 2), 84, "Torque, in-lbs");
+  //           tft.drawString(12,84,"Torque, in-lbs");
+
+  u8g2.drawHLine(0, 70, 128);
+  u8g2.sendBuffer();
+}
+
+void Calibration6()
+{
+  tft.setFreeFont(LargeFont);
+  u8g2.setFontPosBaseline();
+  //           u8g2.clearBuffer();
+  //           Locked = true;
+  if (Locked)
+  {
+    u8g2.drawBox(0, 0, 128, 16);
+    u8g2.setDrawColor(2);
+    tft.drawString(64 - (u8g2.getStrWidth("CALIBRATION") / 2), 15, "CALIBRATION");
+    u8g2.setDrawColor(1);
+  }
+  else
+  {
+    tft.drawString(64 - (u8g2.getStrWidth("CALIBRATION") / 2), 15, "CALIBRATION");
+  }
+
+    u8g2.setFontPosTop();
+
+  tft.setFreeFont(SmallFont);
+  tft.drawString(7, 22, "Lock-chg / unL-save");
+
+  tft.setFreeFont(MedFont);
+  tft.drawString(7, 39, "R R");
+  tft.fillCircle(10, 44, 7, U8G2_DRAW_ALL);
+  tft.fillCircle(26, 44, 7, U8G2_DRAW_ALL);
+  tft.setFreeFont(SmallFont);
+  tft.drawString(40, 39, "Next Field");
+
+  tft.drawString(1, Vy[6], "Cal Factor:");
+  u8g2.setCursor(Vx[6], Vy[6]);
+  u8g2.print(Load_Calibration_Factor);
+  tft.drawString(1, Vy[5], " Rec Data?:");
+  u8g2.setCursor(Vx[5], Vy[5]);
+  u8g2.print(Recordflag);
+  //          tft.drawString(1,Vy[3],"Lst Seq Ct:"); u8g2.setCursor(Vx[3],Vy[3]); u8g2.print(Test_ID);
+  //          tft.drawString(1,Vy[4],"     Blade:"); u8g2.setCursor(Vx[4],Vy[4]); u8g2.print(Blade);
+  // if (Recordflag){tft.drawString(Vx[6]+24,Vy[6], "YES"); } else {tft.drawString(Vx[6]+24,Vy[6], "NO"); }
+  u8g2.setCursor(Vx[5] + (u8g2.getMaxCharWidth() + 1) * (Vnd[5] + 2), Vy[5]);
+  u8g2.print(RECdes[Recordflag]);
+  //       grid();
+
+  u8g2.sendBuffer();
+}
+void MenuScreen(int CurrentDisplay)
+{
+  u8g2.clearBuffer();
+  tft.setFreeFont(SmallFont);
+  //    tft.setFreeFont(u8g2_font_5x7_tr);
+  u8g2.setFontPosTop();
+  u8g2.setCursor(0, 0);
+  u8g2.print(CurrentDisplay);
+  u8g2.setFontPosBaseline();
+
+  switch (CurrentDisplay)
+  {
+
+  case 0:
+    SoilSaber0();
+    break;
+  case 1:
+    ButtonClick1();
+    break;
+  case 2:
+    SampleData2();
+    break;
+  case 3:
+    TestMV3();
+    break;
+  case 4:
+    TestMVur4();
+    break;
+  case 5:
+    Torque5();
+    break;
+  case 6:
+    Calibration6();
+    break;
+  }
+}
