@@ -5,6 +5,9 @@ const int Vh[] = {0, 15, 15, 15, 15, 15, 15, 0};
 const int Vnd[] = {0, 3, 2, 3, 1, 1, 4, 1};
 const int VmaxVal[] = {0, 999, 99, 999, 2, 3, 9999, 0};
 const int VminVal[] = {0, 0, 0, 0, 0, 0, 0, 0};
+
+const bool InitSetup = true;
+
 static volatile uint8_t Vsel = 0;
 static volatile uint8_t NumFields = 0;
 static volatile uint8_t FieldStart = 0;
@@ -25,9 +28,9 @@ float FastTestDurationDeg = 1800.; //
 float ResBladeDegPerMin = 25.;
 float ResTestDurationDeg = 90.; //
 
-#define EEPROM_SIZE 512
-uint8_t eeAddress = 0;
-uint8_t eeAddress100 = 100;
+//#define EEPROM_SIZE 512
+//uint8_t eeAddress = 0;
+//uint8_t eeAddress100 = 100;
 
 // EEprom Variables
 char sSerial_No[] = "            ";

@@ -31,13 +31,15 @@
 #include "esp_bt.h"            // Built-in
 #include <WiFiClient.h>
 #include <WiFiAP.h>
-#include <EEPROM.h>
+//#include <EEPROM.h>
 #include <Wire.h>
 #include "OneButton.h"
 #include "TFT_eSPI.h" /* Please use the TFT library provided in the library. */
 #define LCD_MODULE_CMD_1
 #include "DataStruc01.h"
 #include "GlobalVar.h"
+#include <Preferences.h>
+#include "MyPreferences.h"
 /* The product now has two screens, and the initialization code needs a small change in the new version. The LCD_MODULE_CMD_1 is used to define the
  * switch macro. */
 
@@ -194,7 +196,10 @@ void setup() {
   Serial.begin(115200);
   Serial.println("Hello T-Display-S3 w=");
   Serial.print(tft.width());
-EEPROM.begin(EEPROM_SIZE);
+//EEPROM.begin(EEPROM_SIZE);
+Preferences EElike;
+EElike.begin("PermMEM",false);
+ReadPerm();
   delay(100);
   debugln(Test_ID);
   debugln(ProjectID);
