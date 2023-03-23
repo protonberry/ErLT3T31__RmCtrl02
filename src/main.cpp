@@ -1,4 +1,5 @@
 // ErLT3T31__RMCTRL02
+//Save as main using EEPROM that does not work befor new branch to use Preferences
 #define DEBUG true
 #if DEBUG
 #define debug(x) Serial.print(x)
@@ -118,7 +119,7 @@ esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &RM_Instruction, s
   EEPROM.put(eeAddress100 + 52, Blade);
   EEPROM.put(eeAddress100 + 56, Recordflag);
   EEPROM.put(eeAddress100 + 15, Locked);
-  EEPROM.commit();
+  debugln(EEPROM.commit());
 }
  #include "MVstartStop.h"
  #include "CallBacks.h"
