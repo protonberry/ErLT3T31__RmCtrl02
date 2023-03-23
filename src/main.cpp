@@ -1,5 +1,6 @@
 // ErLT3T31__RMCTRL02
 //Save as main using EEPROM that does not work befor new branch to use Preferences
+//v5 preferences branch
 #define DEBUG true
 #if DEBUG
 #define debug(x) Serial.print(x)
@@ -76,7 +77,8 @@ bool StartupErrors = false;
 int start, downloadtime = 1, uploadtime = 1, downloadsize, uploadsize, downloadrate, uploadrate, numfiles;
 
 //*****Versions*******
-char Vnum[] = "04"; // MV31 working, save here as fall back
+char Vnum[] = "05"; // preferences branch start
+//char Vnum[] = "04"; // MV31 working, save here as fall back
 //char Vnum[] = "03"; // New Instr to MV, stop,set cal, reset fact settings
 //char Vnum[] = "02"; // add espnow to send and received MV data
 //char Vnum[] = "01"; // start with LT3 master and added E_LTMU11NA_NOW4
