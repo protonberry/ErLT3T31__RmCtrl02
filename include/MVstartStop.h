@@ -7,12 +7,15 @@
   MaxSx = 0. ;
   rotAtMax = 0. ;
   TorMaxflag = false;
+/*
   if (((TestStage == 1) && (Recordflag > 0)) || ((TestStage == 2) && (Recordflag == 2)) || ((TestStage == 3) && (Recordflag > 1)) )
     {  Test_ID = Test_ID + 1;
       if (Test_ID>200){Test_ID = 1 ;}
       }
   SaveEEPROM();
-  
+    EEPROM.get(eeAddress100 + 40, Test_ID);
+  debug("test_id= ");debugln(Test_ID);
+*/
   char filechar[31];
   char datachar[31];
   String fileString;
@@ -21,6 +24,12 @@
   if (((TestStage == 1) && (Recordflag > 0)) || ((TestStage == 2) && (Recordflag == 2)) || ((TestStage == 3) && (Recordflag > 1)) )
 //  if (Recordflag != 0)
   {
+      Test_ID = Test_ID + 1;
+      if (Test_ID>200){Test_ID = 1 ;}
+  SaveEEPROM();
+    EEPROM.get(eeAddress100 + 40, Test_ID);
+  debug("test_id= ");debugln(Test_ID);
+
     fileString = '/' + String(ProjectID) + String(SampleID) + String(Test_ID) += ".csv";
     fileString.toCharArray(filechar, 14);
 

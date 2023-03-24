@@ -1,4 +1,5 @@
 // ErLT3T31__RMCTRL02
+//Save as main using EEPROM that does not work befor new branch to use Preferences
 #define DEBUG true
 #if DEBUG
 #define debug(x) Serial.print(x)
@@ -14,6 +15,7 @@
 #include "ChkLogo240x135.h"
 #include "pin_config.h"
 #include "Board_Config.h"
+#include <EEPROM.h>
 
 #define FORMAT_SPIFFS_IF_FAILED true
 #include "FS.h"
@@ -29,7 +31,6 @@
 #include "esp_bt.h"            // Built-in
 #include <WiFiClient.h>
 #include <WiFiAP.h>
-#include <EEPROM.h>
 #include <Wire.h>
 #include "OneButton.h"
 #include "TFT_eSPI.h" /* Please use the TFT library provided in the library. */
@@ -118,7 +119,10 @@ esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &RM_Instruction, s
   EEPROM.put(eeAddress100 + 52, Blade);
   EEPROM.put(eeAddress100 + 56, Recordflag);
   EEPROM.put(eeAddress100 + 15, Locked);
-  EEPROM.commit();
+  delay(100);
+  debugln(EEPROM.commit());
+  delay(100);
+  debug("saveEEid="); debug(Test_ID); debug(EEPROM.get(eeAddress100 + 40, Test_ID));
 }
  #include "MVstartStop.h"
  #include "CallBacks.h"
