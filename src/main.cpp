@@ -119,10 +119,7 @@ esp_err_t result = esp_now_send(broadcastAddress, (uint8_t *) &RM_Instruction, s
   EEPROM.put(eeAddress100 + 52, Blade);
   EEPROM.put(eeAddress100 + 56, Recordflag);
   EEPROM.put(eeAddress100 + 15, Locked);
-  delay(100);
-  debugln(EEPROM.commit());
-  delay(100);
-  debug("saveEEid="); debug(Test_ID); debug(EEPROM.get(eeAddress100 + 40, Test_ID));
+  EEPROM.commit();
 }
  #include "MVstartStop.h"
  #include "CallBacks.h"
